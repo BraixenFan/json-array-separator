@@ -1,6 +1,7 @@
-fetchFile();
-
 let States = [];
+let Locations = [];
+
+fetchFile();
 
 async function fetchFile() {
   const requestURL =
@@ -19,8 +20,13 @@ function locationsTransformer(rawData) {
 
   universities = rawData.features;
   universities.forEach(element => {
+
+    let place = { location_name: element.attributes.University_Chapter, latLng: [element.geometry.x, element.geometry.y] };
+
     States.push(element.attributes.State);
+    Locations.push(place);
   });
 
   console.log(States);
+  console.log(Locations);
 }
