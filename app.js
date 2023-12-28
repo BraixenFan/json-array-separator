@@ -1,5 +1,7 @@
 fetchFile();
 
+let States = [];
+
 async function fetchFile() {
   const requestURL =
     "https://services2.arcgis.com/5I7u4SJE1vUr79JC/arcgis/rest/services/UniversityChapters_Public/FeatureServer/0/query?where=1%3D1&outFields=University_Chapter,City,State&outSR=4326&resultRecordCount=15&f=json";
@@ -14,5 +16,11 @@ async function fetchFile() {
 }
 
 function locationsTransformer(rawData) {
-  console.log(rawData);
+
+  universities = rawData.features;
+  universities.forEach(element => {
+    States.push(element.attributes.State);
+  });
+
+  console.log(States);
 }
